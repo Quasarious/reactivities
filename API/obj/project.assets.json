@@ -3265,11 +3265,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\API\\API.csproj",
+      "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Искандерка\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\API\\obj\\",
+      "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Искандерка\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3286,8 +3286,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Application\\Application.csproj"
+            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Application\\Application.csproj"
             }
           }
         }

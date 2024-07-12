@@ -1450,11 +1450,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\Искандерка\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Application\\obj\\",
+      "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Искандерка\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1471,11 +1471,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj"
+            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Persistence\\Persistence.csproj": {
-              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Persistence\\Persistence.csproj"
+            "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Persistence\\Persistence.csproj"
             }
           }
         }

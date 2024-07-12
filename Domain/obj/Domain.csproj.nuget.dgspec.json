@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj": {
+    "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Искандерка\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\C#\\Reactivities\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\Искандерка\\Desktop\\MyProjects\\CSharp\\Reactivities\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Искандерка\\AppData\\Roaming\\NuGet\\NuGet.Config",
