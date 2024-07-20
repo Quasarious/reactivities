@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Core;
 using MediatR;
 using Persistence;
 
@@ -9,11 +10,11 @@ namespace Application.Activities
 {
     public class Delete
     {
-        public class Command : IRequest {
+        public class Command : IRequest<Result<Unit>> {
             public Guid ID {get; set;}
         }
 
-        public class Handler : IRequestHandler<Command> {
+        public class Handler : IRequestHandler<Command, Result<Unit>> {
             private readonly DataContext _ctx;
             public Handler(DataContext ctx)
             {
@@ -21,15 +22,20 @@ namespace Application.Activities
                 
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = await _ctx.Activities.FindAsync(request.ID);
 
+                // if (activity == null)
+                //     return null;
+
                 _ctx.Remove(activity);
 
-                await _ctx.SaveChangesAsync();
+                var result = await _ctx.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+                if (!result) return Result<Unit>.Failure("Не удалось удалить событие");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Application.Core;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -12,11 +14,19 @@ namespace Application.Activities
 {
     public class Edit
     {
-        public class Command : IRequest {
+        public class Command : IRequest<Result<Unit>> {
             public Activity Activity { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+            }
+        }
+
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
         private readonly DataContext _ctx;
         private readonly IMapper _mapper;
@@ -24,15 +34,20 @@ namespace Application.Activities
                 _mapper = mapper;
                 _ctx = ctx;
             }
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = await _ctx.Activities.FindAsync(request.Activity.ID);
 
+                if (activity == null)
+                    return null;
+
                 _mapper.Map(request.Activity, activity);
 
-                await _ctx.SaveChangesAsync();
+                var result = await _ctx.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+                if (!result) return Result<Unit>.Failure("Не удалось обновить данные о событии");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
