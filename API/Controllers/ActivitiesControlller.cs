@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous] // TODO: delete
     public class ActivitiesController : BaseApiController
     {
 
