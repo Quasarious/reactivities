@@ -5,6 +5,7 @@ import { store } from "./store";
 
 export default class ProfileStore {
     profile: Profile | null = null;
+    editMode = false;
     loadingProfile = false;
     uploading = false;
     loading = false;
@@ -32,6 +33,27 @@ export default class ProfileStore {
         } catch(error) {
             console.log(error);
             runInAction(() => this.loadingProfile = false);
+        }
+    }
+
+    private getProfile(username: string) {
+        return agent.Profiles.get(username);
+    }
+
+    updateProfile = async (profile: Partial<Profile>) => {
+        try {
+            await agent.Profiles.updateProfile(profile);
+
+            runInAction(() => {
+                if (profile.username) {
+                    let updatedProfile = {...this.getProfile(profile.username), ...profile}                  
+                    this.profile!.displayName = updatedProfile.displayName!;
+                    this.profile!.bio = updatedProfile.bio!;
+                }
+            })
+
+        } catch (error) {
+            console.log(error);
         }
     }
 

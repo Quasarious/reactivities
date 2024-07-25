@@ -31,9 +31,6 @@ export interface Activity {
     city: string = '';
     venue: string = '';
 
-    /**
-     *
-     */
     constructor(activity?: ActivityFormValues) {
       if (activity) {
         this.id = activity.id;

@@ -24,7 +24,7 @@ export default function ActivityListItem({activity} : Props) {
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>
                                 {activity.title}
                             </Item.Header>
-                            <Item.Description>Hosted by 
+                            <Item.Description> {'Организатор '}
                                 <Link to={`profiles/${activity.hostUsername}`}>
                                     {activity.host?.displayName}
                                 </Link>
