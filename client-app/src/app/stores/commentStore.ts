@@ -9,7 +9,6 @@ export default class CommentStore {
 
     constructor() {
         makeAutoObservable(this);
-        
     }
 
     createHubConnection = (activityID : string) => {
