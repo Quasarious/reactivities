@@ -10,9 +10,12 @@ namespace Application.Activities
 {
     public class List
     {
-        public class Query : IRequest<Result<List<ActivityDTO>>> {}
+        public class Query : IRequest<Result<PagedList<ActivityDTO>>> 
+        {
+            public ActivityParams Params { get; set; }
+        }
 
-        public class Handler : IRequestHandler<Query, Result<List<ActivityDTO>>>
+        public class Handler : IRequestHandler<Query, Result<PagedList<ActivityDTO>>>
         {
             private readonly DataContext _ctx;
             private readonly IMapper _mapper;
@@ -24,14 +27,27 @@ namespace Application.Activities
                 _mapper = mapper;
                 _userAccessor = userAccessor;
             }
-            public async Task<Result<List<ActivityDTO>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PagedList<ActivityDTO>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var activites = await _ctx.Activities
-                                        .ProjectTo<ActivityDTO>(_mapper.ConfigurationProvider,
-                                        new {currentUsername = _userAccessor.GetUsername()})
-                                        .ToListAsync(cancellationToken);
+                var query =  _ctx.Activities
+                    .Where(d => d.Date >= request.Params.StartDate)
+                    .OrderBy(d => d.Date)
+                    .ProjectTo<ActivityDTO>(_mapper.ConfigurationProvider,
+                        new {currentUsername = _userAccessor.GetUsername()})
+                    .AsQueryable();
                 
-                return Result<List<ActivityDTO>>.Success(activites);
+                if (request.Params.IsGoing && !request.Params.IsHost) {
+                    query = query.Where(x => x.Attendees.Any(a => a.Username == _userAccessor.GetUsername()));
+                }
+
+                if (!request.Params.IsGoing && request.Params.IsHost) {
+                    query = query.Where(x => x.HostUsername == _userAccessor.GetUsername());
+                }
+
+                return Result<PagedList<ActivityDTO>>.Success(
+                    await PagedList<ActivityDTO>.CreateAsync(query, request.Params.PageNumber,
+                                                            request.Params.PageSize)
+                );
             }
         }
     }
