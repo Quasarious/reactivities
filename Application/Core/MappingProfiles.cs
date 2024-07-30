@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Comments;
+using Application.Profiles;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Identity;
 
 namespace Application.Core
 {
-    public class MappingProfiles : Profile
+    public class MappingProfiles : AutoMapper.Profile
     {
         public MappingProfiles()
         {
@@ -36,6 +37,13 @@ namespace Application.Core
                 .ForMember(d => d.FollowingCount, o => o.MapFrom(s => s.Followings.Count))
                 .ForMember(d => d.Following, o => 
                         o.MapFrom(s => s.Followers.Any(x => x.Observer.UserName == currentUsername)));
+             
+            CreateMap<ActivityAttendee, UserActivityDTO>()
+                .ForMember(d => d.ID, o => o.MapFrom(s => s.ActivityID))
+                .ForMember(d => d.Title, o => o.MapFrom(s => s.Activity.Title))
+                .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
+                .ForMember(d => d.Date, o => o.MapFrom(s => s.Activity.Date))
+                .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.Activity.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
 
             CreateMap<Comment, CommentDTO>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))

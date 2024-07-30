@@ -34,7 +34,7 @@ export default observer(function ActivityDetailedSidebar ({activity: {attendees,
                             color='orange'
                             ribbon='right'
                         >
-                            Host
+                            Организатор
                         </Label>}
                         <Image size='tiny' src={attendee.image || '/assets/user.png'} />
                         <Item.Content verticalAlign='middle'>

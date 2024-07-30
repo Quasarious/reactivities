@@ -32,14 +32,14 @@ export default function ActivityListItem({activity} : Props) {
                             {activity.isHost && (
                                 <Item.Description>
                                     <Label basic color='orange'>
-                                        Вы организовываете мероприятие
+                                        Вы организатор
                                     </Label>
                                 </Item.Description>
                             )}
                             {activity.isGoing && !activity.isHost &&(
                                 <Item.Description>
                                     <Label basic color='green'>
-                                        Вы участвуете в мероприятии
+                                        Вы участник
                                     </Label>
                                 </Item.Description>
                             )}
