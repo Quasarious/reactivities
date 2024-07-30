@@ -29,23 +29,23 @@ namespace Infrastructure.Security
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsHostRequirement requirement)
         {
             var userID = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            
             if (userID == null)
                 return Task.CompletedTask;
             
             var activityID = Guid.Parse(_httpContextAccessor.HttpContext?.Request.RouteValues
-                .SingleOrDefault(x => x.Key == "id").Value?.ToString());
-            
+                .FirstOrDefault(x => x.Key == "id").Value?.ToString());
+                        
             var attendee = _ctx.ActivityAttendees
-                .AsNoTracking()
                 .FirstOrDefaultAsync(aa => aa.AppUserID == userID && aa.ActivityID == activityID)
                 .Result;
 
             if (attendee == null)
                 return Task.CompletedTask;
 
-            if (attendee.IsHost)
+            if (attendee.IsHost) {
                 context.Succeed(requirement);
+            }
             
             return Task.CompletedTask;
         }

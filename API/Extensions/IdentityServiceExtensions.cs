@@ -44,7 +44,7 @@ namespace API.Extensions
                             {
                                 var accessToken = ctx.Request.Query["access_token"];
                                 var path = ctx.HttpContext.Request.Path;
-                                if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat"))) 
+                                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chat")) 
                                 {
                                     ctx.Token = accessToken;
                                 }

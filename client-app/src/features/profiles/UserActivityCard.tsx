@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default observer (function UserActivityCard({activity}: Props) {
-    console.log(activity.category);
     return (
         <Card as={Link} to={`/activities/${activity.id}`}>
             <Image 
