@@ -29,14 +29,14 @@ export default observer (function PhotoUploadWidget({loading, uploadPhoto} : Pro
     return (
         <Grid>
             <Grid.Column width={4}>
-                <Header sub color='teal' content='Add Photo'/>
+                <Header sub color='teal' textAlign="center" content='Загрузка фото'/>
                 <PhotoWidgetDropzone setFiles={setFiles}/>
             </Grid.Column>
 
             <Grid.Column width={1}/>
 
             <Grid.Column width={4}>
-                <Header sub color='teal' content='Resize Image'/>
+                <Header sub color='teal' textAlign="center" content='Выбор размера изображения'/>
                 {files && files.length > 0 && ( 
                     <PhotoWidgetCropper setCropper={setCropper} imagePreview={files[0].preview}/>
                 )}
@@ -45,7 +45,7 @@ export default observer (function PhotoUploadWidget({loading, uploadPhoto} : Pro
             <Grid.Column width={1}/>
 
             <Grid.Column width={4}>
-                <Header sub color='teal' content='Preview & Update'/>
+                <Header sub color='teal' textAlign="center" content='Предпросмотр и Обновление'/>
                 {files && files.length > 0 &&
                 <>
                 <div className='img-preview' style={{minHeight: 200, overflow:"hidden"}}/>

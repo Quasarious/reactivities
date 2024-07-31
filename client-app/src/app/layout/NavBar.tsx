@@ -12,12 +12,12 @@ export default observer( function NavBar() {
             <Container>
                 <Menu.Item as={NavLink} exact to='/' header>
                     <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}}/>
-                    Reactivities
+                    Мероприятия
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/activities' name='Activities'/>
-                <Menu.Item as={NavLink} to='/errors' name='Errors'/>
+                <Menu.Item as={NavLink} to='/activities' name='Мероприятия'/>
+                <Menu.Item as={NavLink} to='/errors' name='ОшибкиDev'/>
                 <Menu.Item>
-                    <Button as={NavLink} to='/createActivity' positive content='Create Activity'/>
+                    <Button as={NavLink} to='/createActivity' positive content='Внести данные о мероприятии'/>
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Image src={user?.image || '/assets/user.png'} avatar spaced='right'/>

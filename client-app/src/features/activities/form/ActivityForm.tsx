@@ -63,14 +63,14 @@ export default observer (function ActivityForm() {
         }
     }
 
-    if (loadingInitial) return <LoadingComponent content='Loading activity...'/>
+    if (loadingInitial) return <LoadingComponent content='Загружаем информацию...'/>
 
     return (
         <Segment clearing>
             <Header content='Информация о событии' sub color='teal'/>
             <Formik 
-                    validationSchema={activityValidationSchema}
                     enableReinitialize 
+                    validationSchema={activityValidationSchema}
                     initialValues={activity} 
                     onSubmit={values => handleFormSubmit(values)}>
                 {({handleSubmit, isValid, isSubmitting, dirty}) => (
@@ -90,8 +90,11 @@ export default observer (function ActivityForm() {
                         <MyTextInput placeholder='Место' name='venue'/>
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={isSubmitting} floated='right' 
-                            positive type='submit' content='Подтвердить'/>
+                            loading={isSubmitting} 
+                            floated='right' 
+                            positive 
+                            type='submit' 
+                            content='Подтвердить'/>
                         <Button as={Link} to='/activities' floated='right' type='button'content='Отмена'/>
                     </Form>
                 )}

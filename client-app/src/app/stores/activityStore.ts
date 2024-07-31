@@ -1,7 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import { Activity, ActivityFormValues } from "../models/activity";
 import agent from "../api/agent";
-import { format } from "date-fns";
 import { store } from "./store";
 import { Profile } from "../models/profile";
 import { Pagination, PagingParams } from "../models/pagination";
@@ -9,7 +8,7 @@ import { Pagination, PagingParams } from "../models/pagination";
 export default class ActivityStore {    
     activityRegistry = new Map<string, Activity>();
 
-    selectedActivity: Activity | undefined = undefined;
+    selectedActivity?: Activity  = undefined;
     editMode = false;
     loading = false;
     loadingInitial = false;
@@ -82,7 +81,7 @@ export default class ActivityStore {
     get groupedActivities() {
         return Object.entries(
             this.activitiesByDate.reduce((activities, activity) => {
-                const date = format(activity.date!, 'dd MMMM yyyy');
+                const date = activity.date!.toLocaleDateString();
                 activities[date] = activities[date] ? [...activities[date], activity] : [activity];
                 
                 return activities;
@@ -176,7 +175,6 @@ export default class ActivityStore {
         try {
             await agent.Activities.update(activity);
             
-
             runInAction(() => {
                 if (activity.id) {
                     let updatedActivity = {...this.getActivity(activity.id), ...activity}
@@ -187,9 +185,6 @@ export default class ActivityStore {
             
         } catch (error) {
             console.log(error)
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 

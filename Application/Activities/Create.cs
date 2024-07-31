@@ -49,6 +49,8 @@ namespace Application.Activities
 
                 request.Activity.Attendees.Add(attendee);
 
+                _ctx.ActivityAttendees.Add(attendee);
+
                 _ctx.Activities.Add(request.Activity);
 
                 var result = await _ctx.SaveChangesAsync() > 0;

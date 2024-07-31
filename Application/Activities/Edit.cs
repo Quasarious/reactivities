@@ -8,6 +8,7 @@ using AutoMapper;
 using Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Activities
@@ -28,20 +29,27 @@ namespace Application.Activities
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-        private readonly DataContext _ctx;
-        private readonly IMapper _mapper;
+            private readonly DataContext _ctx;
+            private readonly IMapper _mapper;
             public Handler(DataContext ctx, IMapper mapper) {
                 _mapper = mapper;
                 _ctx = ctx;
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _ctx.Activities.FindAsync(request.Activity.ID);
+                var activity = await _ctx.Activities.FirstOrDefaultAsync(a => a.ID == request.Activity.ID);
 
                 if (activity == null)
                     return null;
 
-                _mapper.Map(request.Activity, activity);
+                activity.Title = request.Activity.Title;
+                activity.Description = request.Activity.Description;
+                activity.Category = request.Activity.Category;
+                activity.Date = request.Activity.Date;
+                activity.City = request.Activity.City;
+                activity.Venue = request.Activity.Venue;
+
+                _ctx.Activities.Update(activity);
 
                 var result = await _ctx.SaveChangesAsync() > 0;
 
